@@ -26,7 +26,7 @@ const Featured = () => {
       <div
         className={styles.arrowContainer}
         style={{
-          left: 0,
+          left: '0',
         }}
         onClick={() => handleArrow('l')}
       >
