@@ -23,8 +23,9 @@
   color: #b7903c;
 }
 .text {
-  color: rgb(237, 237, 237);
+  color: lightgray;
 }
 .motto {
   color: rgb(167, 166, 166);
+  text-transform: uppercase;
 }
