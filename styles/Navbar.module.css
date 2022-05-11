@@ -79,6 +79,9 @@
 }
 
 @media screen and (max-width: 480px) {
+  .container {
+    height: 60px;
+  }
   .item:nth-child(2) {
     display: none;
   }
