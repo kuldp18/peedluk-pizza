@@ -104,3 +104,43 @@
 .button:hover {
   background-color: #e85530;
 }
+
+@media screen and (max-width: 480px) {
+  .container {
+    height: auto;
+    text-align: center;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  .add {
+    width: 100%;
+  }
+
+  .sizes {
+    width: 100%;
+    padding: 0 1.3rem;
+  }
+
+  .imgContainer {
+    width: 70vw;
+    height: 70vw;
+  }
+
+  .title {
+    margin: 5px;
+  }
+
+  .ingredients {
+    flex-direction: column;
+  }
+  .option {
+    justify-content: flex-start;
+    width: 100%;
+    font-size: 18px;
+  }
+  .checkbox {
+    margin-right: 15px;
+    width: 25px;
+    height: 25px;
+  }
+}
