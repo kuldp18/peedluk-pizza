@@ -47,6 +47,7 @@ const Featured = () => {
             layout="fill"
             alt=""
             objectFit="contain"
+            priority={true}
           />
           ;
         </div>
@@ -56,6 +57,7 @@ const Featured = () => {
             layout="fill"
             alt=""
             objectFit="contain"
+            priority={true}
           />
           ;
         </div>
@@ -65,6 +67,7 @@ const Featured = () => {
             layout="fill"
             alt=""
             objectFit="contain"
+            priority={true}
           />
           ;
         </div>
