@@ -1,6 +1,7 @@
 .container {
   height: calc(100vh - 100px);
   display: flex;
+  margin-top: 7rem;
 }
 .left {
   flex: 1;
@@ -122,8 +123,9 @@
   }
 
   .imgContainer {
-    width: 70vw;
-    height: 70vw;
+    width: 50vw;
+    height: 50vw;
+    margin-top: 6rem;
   }
 
   .title {
