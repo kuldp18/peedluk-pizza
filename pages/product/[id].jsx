@@ -6,10 +6,27 @@ import { API } from '../../backend';
 
 const Product = ({ pizza }) => {
   const [size, setSize] = useState(0);
+  const [extraPrice, setExtraPrice] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [extras, setExtras] = useState([]);
+
   const getSizeType = () => {
     if (size === 0) return 'small';
     if (size === 1) return 'medium';
     return 'large';
+  };
+
+  const handleCheckbox = (e, option) => {
+    const checked = e.target.checked;
+    const price = option.price;
+
+    if (checked) {
+      setExtraPrice(extraPrice + price);
+      setExtras((prev) => [...prev, option]);
+    } else {
+      setExtraPrice(extraPrice - price);
+      setExtras(extras.filter((extra) => extra._id !== option._id));
+    }
   };
 
   return (
@@ -23,7 +40,9 @@ const Product = ({ pizza }) => {
         <h1 className={styles.title}>
           {pizza.title} ({getSizeType()})
         </h1>
-        <span className={styles.price}>$ {pizza.prices[size]}</span>
+        <span className={styles.price}>
+          $ {pizza.prices[size] + extraPrice}
+        </span>
         <p className={styles.desc}>{pizza.desc}</p>
         <h3 className={styles.choose}>Choose the size</h3>
         <div className={styles.sizes}>
@@ -42,42 +61,20 @@ const Product = ({ pizza }) => {
         </div>
         <h3 className={styles.choose}>Choose additional ingredients</h3>
         <div className={styles.ingredients}>
-          <div className={styles.option}>
-            <input
-              type="checkbox"
-              name="double"
-              id="double"
-              className={styles.checkbox}
-            />
-            <label htmlFor="double">Double Ingredients</label>
-          </div>
-          <div className={styles.option}>
-            <input
-              type="checkbox"
-              name="spicy"
-              id="spicy"
-              className={styles.checkbox}
-            />
-            <label htmlFor="spicy">Spicy Sauce</label>
-          </div>
-          <div className={styles.option}>
-            <input
-              type="checkbox"
-              name="garlic"
-              id="garlic"
-              className={styles.checkbox}
-            />
-            <label htmlFor="garlic">Garlic Sauce</label>
-          </div>
-          <div className={styles.option}>
-            <input
-              type="checkbox"
-              name="cheese"
-              id="cheese"
-              className={styles.checkbox}
-            />
-            <label htmlFor="cheese">Extra Cheese</label>
-          </div>
+          {pizza.extraOptions.map((extraOption) => {
+            return (
+              <div className={styles.option} key={extraOption._id}>
+                <input
+                  type="checkbox"
+                  name={extraOption.text}
+                  id={extraOption.text}
+                  className={styles.checkbox}
+                  onChange={(e) => handleCheckbox(e, extraOption)}
+                />
+                <label htmlFor={extraOption.text}>{extraOption.text}</label>
+              </div>
+            );
+          })}
         </div>
         <div className={styles.add}>
           <input
@@ -87,6 +84,8 @@ const Product = ({ pizza }) => {
             defaultValue={1}
             className={styles.quantity}
             placeholder="Quantity"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
           />
           <button className={styles.button}>Add to Cart</button>
         </div>
